@@ -20,7 +20,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "KSh 999",
+    price: "KSh 250",
     period: "/month",
     description: "Unlimited messages, all features",
     features: [
