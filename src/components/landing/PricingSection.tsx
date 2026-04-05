@@ -84,12 +84,20 @@ const PricingSection = () => {
                   {plan.cta}
                 </Button>
               </Link>
+              {plan.highlighted && (
+                <Link to="/auth?mode=signup">
+                  <Button variant="outline" className="w-full mt-3 gap-2 border-[#4CAF50] text-[#4CAF50] hover:bg-[#4CAF50]/10">
+                    <img src="/mpesa-logo.png" alt="M-Pesa" className="w-5 h-5" />
+                    Pay with M-Pesa
+                  </Button>
+                </Link>
+              )}
             </div>
           ))}
         </div>
 
         <p className="text-center mt-8 text-sm text-muted-foreground">
-          🇰🇪 M-Pesa payments coming soon · Stripe available for international users
+          🇰🇪 Pay securely with M-Pesa · Stripe available for international users
         </p>
       </div>
     </section>
