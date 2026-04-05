@@ -97,7 +97,7 @@ const PricingSection = () => {
         </div>
 
         <p className="text-center mt-8 text-sm text-muted-foreground">
-          🇰🇪 M-Pesa payments coming soon · Stripe available for international users
+          🇰🇪 Pay securely with M-Pesa · Stripe available for international users
         </p>
       </div>
     </section>

@@ -169,9 +169,14 @@ const Dashboard = () => {
               <Lock className="w-10 h-10 text-accent mx-auto mb-3" />
               <h3 className="text-lg font-bold text-foreground mb-2">Daily Limit Reached</h3>
               <p className="text-sm text-muted-foreground mb-4">Unlock unlimited messages and get clients faster</p>
-              <Button className="gap-2" onClick={handleUpgrade} disabled={payLoading}>
+              <Button className="gap-2 mb-3" onClick={handleUpgrade} disabled={payLoading}>
                 {payLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Crown className="w-4 h-4" />}
                 Upgrade to Pro — KSh 250/mo
+              </Button>
+              <br />
+              <Button variant="outline" className="gap-2 border-[#4CAF50] text-[#4CAF50] hover:bg-[#4CAF50]/10" onClick={handleUpgrade} disabled={payLoading}>
+                <img src="/mpesa-logo.png" alt="M-Pesa" className="w-5 h-5" />
+                {payLoading ? "Processing..." : "Pay with M-Pesa"}
               </Button>
             </CardContent>
           </Card>
