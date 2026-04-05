@@ -14,16 +14,124 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      message_history: {
+        Row: {
+          created_at: string
+          id: string
+          platform: string
+          result: Json
+          service: string
+          target_client: string
+          tone: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          platform: string
+          result?: Json
+          service: string
+          target_client: string
+          tone: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          platform?: string
+          result?: Json
+          service?: string
+          target_client?: string
+          tone?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string
+          id: string
+          provider: string
+          provider_ref: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          currency?: string
+          id?: string
+          provider?: string
+          provider_ref?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string
+          id?: string
+          provider?: string
+          provider_ref?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          daily_usage_count: number
+          email: string | null
+          id: string
+          last_usage_reset: string
+          plan: Database["public"]["Enums"]["user_plan"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          daily_usage_count?: number
+          email?: string | null
+          id?: string
+          last_usage_reset?: string
+          plan?: Database["public"]["Enums"]["user_plan"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          daily_usage_count?: number
+          email?: string | null
+          id?: string
+          last_usage_reset?: string
+          plan?: Database["public"]["Enums"]["user_plan"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      check_and_increment_usage: {
+        Args: { p_user_id: string }
+        Returns: {
+          allowed: boolean
+          current_count: number
+          user_plan: Database["public"]["Enums"]["user_plan"]
+        }[]
+      }
     }
     Enums: {
-      [_ in never]: never
+      user_plan: "free" | "premium"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +258,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      user_plan: ["free", "premium"],
+    },
   },
 } as const
