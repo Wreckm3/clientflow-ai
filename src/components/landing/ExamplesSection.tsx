@@ -1,3 +1,5 @@
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+
 const examples = [
   {
     before: "Hi, I do graphic design. Do you need any design work done? Let me know.",
@@ -12,10 +14,13 @@ const examples = [
 ];
 
 const ExamplesSection = () => {
+  const headerRef = useScrollReveal();
+  const cardsRef = useScrollReveal(0.1);
+
   return (
     <section id="examples" className="py-20 px-4 bg-gradient-subtle">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16 scroll-reveal">
           <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Proof</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Real Message Examples That Get Replies
@@ -25,9 +30,13 @@ const ExamplesSection = () => {
           </p>
         </div>
 
-        <div className="space-y-8 max-w-3xl mx-auto">
-          {examples.map((ex) => (
-            <div key={ex.service} className="bg-card rounded-2xl border border-border overflow-hidden shadow-[var(--shadow-soft)]">
+        <div ref={cardsRef} className="space-y-8 max-w-3xl mx-auto scroll-reveal scroll-reveal-stagger">
+          {examples.map((ex, i) => (
+            <div
+              key={ex.service}
+              className="scroll-reveal-child bg-card rounded-2xl border border-border overflow-hidden shadow-[var(--shadow-soft)] hover-lift"
+              style={{ transitionDelay: `${i * 0.15}s` }}
+            >
               <div className="px-6 py-3 bg-muted border-b border-border">
                 <span className="text-sm font-medium text-muted-foreground">{ex.service}</span>
               </div>
