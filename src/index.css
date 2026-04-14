@@ -120,22 +120,81 @@
     background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(158, 64%, 40% / 0.03) 100%);
   }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
+  /* Fade up on load */
   .animate-fade-up {
-    animation: fadeUp 0.6s ease-out forwards;
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
   }
 
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out forwards;
   }
-}
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  /* Floating background orbs */
+  .animate-float-slow {
+    animation: floatSlow 8s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: floatSlower 12s ease-in-out infinite;
+  }
+
+  /* Scroll reveal — starts hidden, revealed by JS */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered children reveal */
+  .scroll-reveal-stagger > .scroll-reveal-child {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-reveal-stagger.revealed > .scroll-reveal-child {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Shimmer on gradient text */
+  .text-gradient-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(158, 64%, 40%) 0%,
+      hsl(25, 95%, 53%) 40%,
+      hsl(158, 64%, 50%) 60%,
+      hsl(25, 95%, 53%) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+
+  /* Card hover lift */
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Gentle pulse glow on CTA */
+  .pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
 }
 
 @keyframes fadeUp {
@@ -146,4 +205,25 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(15px, -20px) scale(1.02); }
+  66% { transform: translate(-10px, 10px) scale(0.98); }
+}
+
+@keyframes floatSlower {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20px, -15px) scale(1.03); }
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(158, 64%, 40% / 0); }
+  50% { box-shadow: 0 0 20px 4px hsl(158, 64%, 40% / 0.2); }
 }

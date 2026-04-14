@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, Instagram, Linkedin, Mail } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const templates = [
   {
@@ -61,10 +62,13 @@ const toneColors: Record<string, string> = {
 };
 
 const TemplatesSection = () => {
+  const headerRef = useScrollReveal();
+  const gridRef = useScrollReveal(0.05);
+
   return (
     <section id="templates" className="py-20 px-4">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16 scroll-reveal">
           <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Templates</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Ready-to-Use Message Templates
@@ -74,11 +78,12 @@ const TemplatesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto scroll-reveal scroll-reveal-stagger">
           {templates.map((tmpl, i) => (
             <div
               key={i}
-              className="group bg-card rounded-2xl border border-border p-5 hover:border-primary/30 hover:shadow-[var(--shadow-card)] transition-all duration-300 flex flex-col"
+              className="scroll-reveal-child group bg-card rounded-2xl border border-border p-5 hover:border-primary/30 hover:shadow-[var(--shadow-card)] transition-all duration-300 flex flex-col hover-lift"
+              style={{ transitionDelay: `${i * 0.08}s` }}
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-3">
