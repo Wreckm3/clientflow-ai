@@ -1,17 +1,13 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageSquare, TrendingUp, Zap } from "lucide-react";
-import { lazy, Suspense } from "react";
-
-const BackgroundScene = lazy(() => import("./BackgroundScene"));
 
 const HeroSection = () => {
   return (
     <section className="relative pt-32 pb-20 px-4 overflow-hidden bg-gradient-subtle">
-      {/* 3D Background */}
-      <Suspense fallback={null}>
-        <BackgroundScene />
-      </Suspense>
+      {/* Background decoration */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto text-center relative z-10">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 animate-fade-up">
